@@ -24,7 +24,11 @@ app.get('/gdph', async (req, res) => {
             authorName: artist
         };
 
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0', // Set a user-agent header
+            }
+        });
         const html = response.data;
         const $ = cheerio.load(html);
 
@@ -36,6 +40,7 @@ app.get('/gdph', async (req, res) => {
             baseURL: 'https://gdph.ps.fhgdps.com/tools/songAdd.php',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'User-Agent': 'Mozilla/5.0' // Set a user-agent header
             }
         });
 
