@@ -4,9 +4,8 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -15,7 +14,7 @@ app.get('/gdph', async (req, res) => {
         const { songlink, title, artist } = req.query;
 
         if (!songlink || !title || !artist) {
-            return res.status(400).json({ error: 'Missing required parameters' });
+            return res.status(400).json({ error: 'Missing required parameters 🛡️' });
         }
 
         const url = 'https://gdph.ps.fhgdps.com/tools/songAdd.php';
@@ -34,7 +33,7 @@ app.get('/gdph', async (req, res) => {
         const postData = formData;
 
         const submitResponse = await axios.post(formAction, postData, {
-            baseURL: 'https://gdph.ps.fhgdps.com/tools/songAdd.php', // Set the baseURL
+            baseURL: 'https://gdph.ps.fhgdps.com/tools/songAdd.php',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
