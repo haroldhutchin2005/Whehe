@@ -24,20 +24,11 @@ app.get('/gdph', async (req, res) => {
             authorName: artist
         };
 
-        const response = await axios.get(url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0', // Set a user-agent header
-            }
-        });
-        const html = response.data;
-        const $ = cheerio.load(html);
+        // Assuming that the form action is 'songAdd.php'
+        const formAction = '/songAdd.php';
 
-        const formAction = $('form').attr('action');
-
-        const postData = formData;
-
-        const submitResponse = await axios.post(formAction, postData, {
-            baseURL: 'https://gdph.ps.fhgdps.com/tools/songAdd.php',
+        const submitResponse = await axios.post(formAction, formData, {
+            baseURL: 'https://gdph.ps.fhgdps.com/tools',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'User-Agent': 'Mozilla/5.0' // Set a user-agent header
