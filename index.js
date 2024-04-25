@@ -28,7 +28,7 @@ app.get('/gdph', async (req, res) => {
         const formAction = '/songAdd.php';
 
         const submitResponse = await axios.post(formAction, formData, {
-            baseURL: 'https://gdph.ps.fhgdps.com/tools',
+            baseURL: 'https://gdph.ps.fhgdps.com/tools/songAdd.php',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'User-Agent': 'Mozilla/5.0' // Set a user-agent header
